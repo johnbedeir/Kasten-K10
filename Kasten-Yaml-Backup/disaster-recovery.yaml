@@ -1,0 +1,62 @@
+kind: Policy
+apiVersion: config.kio.kasten.io/v1alpha1
+metadata:
+  name: k10-disaster-recovery-policy
+  namespace: kasten-io
+  uid: bd734213-0fb2-46a0-b832-9a837e36f135
+  resourceVersion: "4324261"
+  generation: 2
+  creationTimestamp: 2022-09-09T09:54:25Z
+  managedFields:
+    - manager: controllermanager-server
+      operation: Update
+      apiVersion: config.kio.kasten.io/v1alpha1
+      time: 2022-09-09T09:54:25Z
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:hash: {}
+          f:specModifiedTime: {}
+          f:validation: {}
+    - manager: dashboardbff-server
+      operation: Update
+      apiVersion: config.kio.kasten.io/v1alpha1
+      time: 2022-09-09T09:54:25Z
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:actions: {}
+          f:createdBy: {}
+          f:frequency: {}
+          f:lastModifyHash: {}
+          f:retention: {}
+          f:selector: {}
+        f:status: {}
+spec:
+  frequency: "@hourly"
+  retention:
+    hourly: 4
+    daily: 1
+    weekly: 1
+    monthly: 1
+    yearly: 1
+  selector:
+    matchExpressions:
+      - key: k10.kasten.io/appNamespace
+        operator: In
+        values:
+          - kasten-io
+  actions:
+    - action: backup
+      backupParameters:
+        filters: {}
+        profile:
+          name: playground6-backup-location
+          namespace: kasten-io
+  createdBy: kasten-io:k10-k10
+  lastModifyHash: 3587586650
+status:
+  validation: Success
+  hash: 391921489
+  specModifiedTime: 2022-09-09T09:54:25Z
