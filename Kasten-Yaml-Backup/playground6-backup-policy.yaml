@@ -1,0 +1,86 @@
+kind: Policy
+apiVersion: config.kio.kasten.io/v1alpha1
+metadata:
+  name: playground6-backup-policy
+  namespace: kasten-io
+  uid: 5f1e2815-8f19-414f-88e2-2c88d051a0d7
+  resourceVersion: "4323256"
+  generation: 6
+  creationTimestamp: 2022-09-09T09:36:08Z
+  managedFields:
+    - manager: dashboardbff-server
+      operation: Update
+      apiVersion: config.kio.kasten.io/v1alpha1
+      time: 2022-09-09T09:43:13Z
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          .: {}
+          f:actions: {}
+          f:createdBy: {}
+          f:frequency: {}
+          f:lastModifyHash: {}
+          f:modifiedBy: {}
+          f:retention: {}
+          f:selector: {}
+          f:subFrequency: {}
+        f:status: {}
+    - manager: controllermanager-server
+      operation: Update
+      apiVersion: config.kio.kasten.io/v1alpha1
+      time: 2022-09-09T09:50:44Z
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:hash: {}
+          f:specModifiedTime: {}
+          f:validation: {}
+spec:
+  frequency: "@daily"
+  subFrequency:
+    minutes:
+      - 0
+    hours:
+      - 16
+    weekdays:
+      - 0
+    days:
+      - 1
+    months:
+      - 1
+  retention:
+    daily: 7
+    weekly: 4
+    monthly: 12
+    yearly: 7
+  selector:
+    matchExpressions:
+      - key: k10.kasten.io/appNamespace
+        operator: In
+        values:
+          - argocd
+          - cert-manager
+          - common-tools
+          - default
+          - ingress
+          - istio-ingress
+          - istio-system
+          - metrics-server
+          - playground6
+          - playground6-123
+          - kasten-io-cluster
+  actions:
+    - action: backup
+      backupParameters:
+        filters: {}
+        ignoreExceptions: true
+        profile:
+          name: playground6-backup-location
+          namespace: kasten-io
+  createdBy: kasten-io:k10-k10
+  modifiedBy: kasten-io:k10-k10
+  lastModifyHash: 321294040
+status:
+  validation: Success
+  hash: 2987299715
+  specModifiedTime: 2022-09-09T09:50:44Z
