@@ -1,0 +1,9 @@
+*.tfvars
+.terraform.*
+*.tfstate
+*.tfstate.*
+.terraform
+
+token.txt
+ns.json
+k10*.yaml
