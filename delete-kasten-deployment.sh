@@ -1,6 +1,6 @@
 #!/bin/bash
 NAMESPACE=kasten-io
-EKS_CLUSTER_NAME=cluster1-k8s-cluster
+EKS_CLUSTER_NAME=simple-project-cluster
 oidc_id=$(aws eks describe-cluster --name ${EKS_CLUSTER_NAME} --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
 oidc_arn=$(aws iam list-open-id-connect-providers | grep $oidc_id | awk '{print $2}' | tr -d '"')
 
