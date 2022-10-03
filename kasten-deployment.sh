@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAMESPACE=kasten-io
-EKS_CLUSTER_NAME=cluster1-k8s-cluster
+EKS_CLUSTER_NAME=simple-project-cluster
 KASTEN_AWS_ACCESS_KEY=$(terraform output access_key_id)
 KASTEN_AWS_SECRET_KEY=$(terraform output secret_access_key)
 KASTEN_IAM_ARN=$(terraform output user_arn)
